@@ -1,0 +1,25 @@
+dist: trusty
+sudo: required
+
+language: node_js
+node_js:
+  - '9'
+
+cache:
+  directories:
+    - ./node_modules
+
+install:
+  - npm install
+
+script:
+  - npm run-script build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
+  # local_dir: dist/angular-github-pages-travis
+  keep_history: true
+  on:
+    branch: master
